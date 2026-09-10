@@ -1,0 +1,24 @@
+{
+  "torch_version": "2.13.0+cu132",
+  "original_sha256": "db23b81c55b3856969af302c258ea8aa62886c7781ef0b7dac353577d7825efa",
+  "patched_sha256": "14a7f7c2aaf01832b9002b02d1a1183ec0a1e1a46f601d10bb688d91618843b1",
+  "reference": "https://github.com/pytorch/pytorch/pull/187350",
+  "edits": [
+    {
+      "before": "        expr = self.simplify(expr, size_oblivious)\n",
+      "after": "        expr = self.simplify(\n            expr,\n            size_oblivious,\n            axioms=axioms,\n            var_to_range=var_to_range,\n        )\n"
+    },
+    {
+      "before": "    def simplify(self, expr: _SympyT, size_oblivious: bool = False) -> _SympyT:\n",
+      "after": "    def simplify(\n        self,\n        expr: _SympyT,\n        size_oblivious: bool = False,\n        *,\n        axioms: tuple[SympyBoolean] | None = None,\n        var_to_range: tuple[tuple[sympy.Symbol, ValueRanges[sympy.Expr]]] | None = None,\n    ) -> _SympyT:\n"
+    },
+    {
+      "before": "                if a == 1 and self._maybe_evaluate_static(sympy.Ge(b, 1)):\n",
+      "after": "                if a == 1 and self._maybe_evaluate_static(\n                    sympy.Ge(b, 1),\n                    axioms=axioms,\n                    var_to_range=var_to_range,\n                ):\n"
+    },
+    {
+      "before": "                if a == 0 and self._maybe_evaluate_static(sympy.Ge(b, 0)):\n",
+      "after": "                if a == 0 and self._maybe_evaluate_static(\n                    sympy.Ge(b, 0),\n                    axioms=axioms,\n                    var_to_range=var_to_range,\n                ):\n"
+    }
+  ]
+}

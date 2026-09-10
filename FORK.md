@@ -53,8 +53,10 @@ separate Windows distribution. No automatic sync workflow is configured.
 
 The previously investigated `vr must not be None for symbol q3` workaround patches
 an installed **PyTorch** file, outside this repository. Matching Python developer
-headers are also installation components. Neither is bundled here. Updating Torch
-may overwrite its workaround; a fork of nunif cannot by itself prevent that.
+headers are also installation components. Neither is bundled here. The optional,
+version-checked [repair tool and regression tests](tools/torch-q3-repair/README.md)
+are kept in this fork for reference and manual use; nothing applies automatically.
+Updating Torch may overwrite its workaround; a fork of nunif cannot by itself prevent that.
 See the [upstream discussion](https://github.com/nagadomi/nunif/discussions/731).
 Do not treat the player changes as a fix for every Torch/compiler configuration.
 
